@@ -1,7 +1,6 @@
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 
@@ -19,17 +18,15 @@ export function Hint({
   sideOffset = 0,
 }: HintProps) {
   return (
-    <TooltipProvider>
-      <Tooltip delayDuration={0}>
-        <TooltipTrigger>{children}</TooltipTrigger>
-        <TooltipContent
-          sideOffset={sideOffset}
-          side={side}
-          className='text-xs max-w-[220px] break-words text-foreground bg-muted'
-        >
-          {description}
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip delayDuration={0}>
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipContent
+        sideOffset={sideOffset}
+        side={side}
+        className='text-xs max-w-[220px] break-words text-foreground bg-muted'
+      >
+        {description}
+      </TooltipContent>
+    </Tooltip>
   );
 }

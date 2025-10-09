@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 import Sidebar from './sidebar';
 
-export default function MobileSidebar() {
+export function MobileSidebar() {
   const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
 
