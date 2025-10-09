@@ -51,7 +51,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           <Input
             name={id}
             id={id}
-            className={cn('text-sm px-2 py-1 h-7', className)}
+            className={cn('px-2 py-1 h-7', className)}
             type={type}
             placeholder={placeholder}
             required={required}
