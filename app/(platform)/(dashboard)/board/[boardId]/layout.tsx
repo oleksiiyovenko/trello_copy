@@ -61,12 +61,14 @@ export default async function BoardLayout({
 
   return (
     <div
-      className='relative h-full bg-no-repeat bg-cover bg-center'
+      className='relative h-[calc(100%-var(--spacing)*14)] bg-no-repeat bg-cover bg-center'
       style={{ backgroundImage: `url(${board.imageFullUrl})` }}
     >
       <BoardNavbar data={board} />
       <div className='absolute inset-0 bg-black/10' />
-      <main className='relative h-full'>{children}</main>
+      <main className='relative h-[calc(100%-var(--spacing)*14)]'>
+        {children}
+      </main>
     </div>
   );
 }
