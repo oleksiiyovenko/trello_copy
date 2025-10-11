@@ -2,8 +2,8 @@
 
 import { toast } from 'sonner';
 
-import { ElementRef, RefObject, useRef, useState } from 'react';
-import { useEventListener, useOnClickOutside } from 'usehooks-ts';
+import { ElementRef, useRef, useState } from 'react';
+import { useEventListener } from 'usehooks-ts';
 
 import { List } from '@prisma/client';
 import { FormInput } from '@/components/form/form-input';
@@ -14,9 +14,10 @@ import { ListOptions } from './list-options';
 
 interface ListHeaderProps {
   data: List;
+  onAddCard: () => void;
 }
 
-export function ListHeader({ data }: ListHeaderProps) {
+export function ListHeader({ data, onAddCard }: ListHeaderProps) {
   const formRef = useRef<ElementRef<'form'>>(null);
   const inputRef = useRef<ElementRef<'input'>>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -34,7 +35,7 @@ export function ListHeader({ data }: ListHeaderProps) {
     setIsEditing(false);
   }
 
-  const { execute, fieldErrors } = useAction(updateList, {
+  const { execute } = useAction(updateList, {
     onSuccess: (data) => {
       toast.success(`Renamed to "${data.title}"`);
       setTitle(data.title);
@@ -108,7 +109,7 @@ export function ListHeader({ data }: ListHeaderProps) {
           {title}
         </div>
       )}
-      <ListOptions onAddCard={() => {}} data={data} />
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   );
 }
