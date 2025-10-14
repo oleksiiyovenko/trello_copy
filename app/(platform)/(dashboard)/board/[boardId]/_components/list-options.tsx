@@ -17,8 +17,8 @@ import { FormSubmit } from '@/components/form/form-submit';
 
 import { List } from '@prisma/client';
 import { useAction } from '@/hooks/use-action';
-import { deletelist } from '@/actions/delete-list';
-import { copylist } from '@/actions/copy-list';
+import { deletelist } from '@/actions/list-actions/delete-list';
+import { copylist } from '@/actions/list-actions/copy-list';
 
 import { MoreHorizontal, X } from 'lucide-react';
 

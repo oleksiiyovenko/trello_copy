@@ -16,7 +16,7 @@ import { FormSubmit } from '@/components/form/form-submit';
 import { Button } from '@/components/ui/button';
 
 import { useAction } from '@/hooks/use-action';
-import { createCard } from '@/actions/create-card';
+import { createCard } from '@/actions/card-actions/create-card';
 
 import { useEventListener, useOnClickOutside } from 'usehooks-ts';
 

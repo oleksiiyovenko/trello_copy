@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/popover';
 import { MoreHorizontal, X } from 'lucide-react';
 
-import { deleteBoard } from '@/actions/delete-board';
+import { deleteBoard } from '@/actions/board-actions/delete-board';
 import { useAction } from '@/hooks/use-action';
 
 interface BoardOptionsProps {

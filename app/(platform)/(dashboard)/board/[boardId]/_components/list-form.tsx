@@ -5,7 +5,7 @@ import { useEventListener, useOnClickOutside } from 'usehooks-ts';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useAction } from '@/hooks/use-action';
-import { createList } from '@/actions/create-list';
+import { createList } from '@/actions/list-actions/create-list';
 
 import { ListWrapper } from './list-wrapper';
 import { FormInput } from '@/components/form/form-input';

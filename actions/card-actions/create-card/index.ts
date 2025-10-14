@@ -44,7 +44,7 @@ async function handler(data: InputType): Promise<ReturnType> {
       select: { order: true },
     });
 
-    const newOrder = lastCard ? lastCard.order + 1 : 1;
+    const newOrder = lastCard ? lastCard.order + 1 : 0;
 
     card = await db.card.create({
       data: {

@@ -9,7 +9,7 @@ import { FormInput } from '@/components/form/form-input';
 
 import { toast } from 'sonner';
 
-import { updateBoard } from '@/actions/update-board';
+import { updateBoard } from '@/actions/board-actions/update-board';
 
 interface BoardTitleFormPrors {
   data: Board;
