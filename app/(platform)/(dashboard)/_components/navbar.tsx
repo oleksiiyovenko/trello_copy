@@ -31,6 +31,7 @@ export const Navbar = () => {
           afterCreateOrganizationUrl={'/organization/:id'}
           afterSelectOrganizationUrl={'/organization/:id'}
           afterLeaveOrganizationUrl='/select-org'
+          hidePersonal
           appearance={{
             elements: {
               rootBox: {
