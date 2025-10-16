@@ -8,6 +8,8 @@ import { redirect } from 'next/navigation';
 import { InputType, ReturnType } from './types';
 import { DeleteBoard } from './schema';
 import { createSafeAction } from '@/lib/create-safe-action';
+import { createAutditLog } from '@/lib/create-audit-log';
+import { ACTION, ENTITY_TYPE } from '@prisma/client';
 
 export async function handler(data: InputType): Promise<ReturnType> {
   const { userId, orgId } = await auth();
@@ -27,6 +29,12 @@ export async function handler(data: InputType): Promise<ReturnType> {
         id,
         orgId,
       },
+    });
+    await createAutditLog({
+      entityId: board.id,
+      entityTitle: board.title,
+      entityType: ENTITY_TYPE.Board,
+      action: ACTION.DELETE,
     });
   } catch {
     return {

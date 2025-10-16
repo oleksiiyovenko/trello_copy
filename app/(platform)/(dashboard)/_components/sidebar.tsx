@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Accordion } from '@/components/ui/accordion';
 import NavItem, { Organization } from './side-nav-item';
+import { useEffect } from 'react';
 
 interface SidebarProps {
   storageKey?: string;
@@ -43,6 +44,12 @@ export default function Sidebar({
     },
     []
   );
+
+  useEffect(() => {
+    userMemberships.revalidate?.().then((data) => {
+      return data;
+    });
+  }, [userMemberships]);
 
   function onExpand(id: string) {
     setExpanded((curr) => ({

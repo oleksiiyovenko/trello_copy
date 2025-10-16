@@ -8,6 +8,8 @@ import { revalidatePath } from 'next/cache';
 import { InputType, ReturnType } from './types';
 import { CopyList } from './schema';
 import { createSafeAction } from '@/lib/create-safe-action';
+import { createAutditLog } from '@/lib/create-audit-log';
+import { ACTION, ENTITY_TYPE } from '@prisma/client';
 
 export async function handler(data: InputType): Promise<ReturnType> {
   const { userId, orgId } = await auth();
@@ -70,6 +72,12 @@ export async function handler(data: InputType): Promise<ReturnType> {
       include: {
         cards: true,
       },
+    });
+    await createAutditLog({
+      entityId: list.id,
+      entityTitle: list.title,
+      entityType: ENTITY_TYPE.List,
+      action: ACTION.CREATE,
     });
   } catch {
     return {
