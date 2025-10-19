@@ -7,12 +7,12 @@ import { BoardNavbar } from './_components/board-navbar';
 export async function generateMetadata({
   params,
 }: {
-  params: {
+  params: Promise<{
     boardId: string;
-  };
+  }>;
 }) {
   const { orgId } = await auth();
-  const param = await params;
+  const { boardId } = await params;
 
   if (!orgId) {
     return {
@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   const board = await db.board.findUnique({
     where: {
-      id: param.boardId,
+      id: boardId,
       orgId,
     },
   });

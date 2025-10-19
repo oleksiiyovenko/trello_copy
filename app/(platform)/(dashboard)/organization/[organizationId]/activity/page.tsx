@@ -8,17 +8,17 @@ import { auth } from '@clerk/nextjs/server';
 export default async function ActivityPage({
   params,
 }: {
-  params: { organizationId: string };
+  params: Promise<{ organizationId: string }>;
 }) {
-  params = await params;
+  const { organizationId } = await params;
   const { orgId } = await auth();
 
   const isPro = await checkSubscription(orgId);
   console.log(orgId);
-  console.log(params.organizationId);
+  console.log(organizationId);
   return (
     <div className='w-full'>
-      {orgId == params.organizationId ? (
+      {orgId == organizationId ? (
         <>
           <Info isPro={isPro} />
           <Separator className='my-2' />

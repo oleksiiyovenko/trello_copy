@@ -8,14 +8,16 @@ import { Button } from '@/components/ui/button';
 const BillingPage = async ({
   params,
 }: {
-  params: { organizationId: string };
+  params: Promise<{ organizationId: string }>;
 }) => {
   const { orgId } = await auth();
   const isPro = await checkSubscription(orgId);
 
+  const { organizationId } = await params;
+
   return (
     <div className='w-full'>
-      {params.organizationId == orgId ? (
+      {organizationId == orgId ? (
         <>
           <Info isPro={isPro} />
           <Separator className='my-4' />
