@@ -6,10 +6,9 @@ import { ENTITY_TYPE } from '@prisma/client';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ cardId: string }> }
+  { params }: { params: { cardId: string } }
 ) {
   try {
-    const resolvedParams = await params;
     const { userId, orgId } = await auth();
 
     if (!userId || !orgId) {
@@ -19,7 +18,7 @@ export async function GET(
     const auditLogs = await db.auditLog.findMany({
       where: {
         orgId,
-        entityId: resolvedParams.cardId,
+        entityId: params.cardId,
         entityType: ENTITY_TYPE.Card,
       },
       orderBy: {
@@ -28,7 +27,7 @@ export async function GET(
       take: 3,
     });
     return NextResponse.json(auditLogs);
-  } catch (error) {
+  } catch {
     return new NextResponse('Internal Error', { status: 500 });
   }
 }
