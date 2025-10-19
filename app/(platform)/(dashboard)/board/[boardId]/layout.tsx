@@ -37,12 +37,12 @@ export default async function BoardLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     boardId: string;
-  };
+  }>;
 }) {
   const { orgId } = await auth();
-  const param = await params;
+  const { boardId } = await params;
 
   if (!orgId) {
     redirect('/select-org');
@@ -50,7 +50,7 @@ export default async function BoardLayout({
 
   const board = await db.board.findUnique({
     where: {
-      id: param.boardId,
+      id: boardId,
       orgId,
     },
   });

@@ -4,14 +4,14 @@ import { redirect } from 'next/navigation';
 import { ListContainer } from './_components/list-container';
 
 interface BoardPageProps {
-  params: {
+  params: Promise<{
     boardId: string;
-  };
+  }>;
 }
 
 export default async function BoardPage({ params }: BoardPageProps) {
   const { orgId } = await auth();
-  const param = await params;
+  const { boardId } = await params;
 
   if (!orgId) {
     redirect('/select-org');
@@ -19,7 +19,7 @@ export default async function BoardPage({ params }: BoardPageProps) {
 
   const lists = await db.list.findMany({
     where: {
-      boardId: param.boardId,
+      boardId: boardId,
       board: {
         orgId,
       },
@@ -38,7 +38,7 @@ export default async function BoardPage({ params }: BoardPageProps) {
 
   return (
     <div className='p-4 h-full overflow-x-auto'>
-      <ListContainer boardId={param.boardId} data={lists} />
+      <ListContainer boardId={boardId} data={lists} />
     </div>
   );
 }
