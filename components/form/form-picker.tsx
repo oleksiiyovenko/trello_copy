@@ -16,13 +16,15 @@ import { FormErrors } from './form-errors';
 interface FormPickerProps {
   id: string;
   errors?: Record<string, string[] | undefined>;
+  width: number;
 }
 
-export function FormPicker({ id, errors }: FormPickerProps) {
+export function FormPicker({ id, errors, width }: FormPickerProps) {
   const { pending } = useFormStatus();
 
-  const [images, setImages] =
-    useState<Array<Record<string, any>>>(defaultImages);
+  const [images, setImages] = useState<Array<Record<string, any>>>(
+    width > 1024 ? defaultImages : defaultImages.slice(0, 6)
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedImageId, setSelectedImageId] = useState(null);
 
@@ -33,7 +35,7 @@ export function FormPicker({ id, errors }: FormPickerProps) {
       try {
         const result = await unsplash.photos.getRandom({
           collectionIds: ['317099'],
-          count: 9,
+          count: width > 1024 ? 9 : 6,
         });
         if (result && result.response) {
           const newImages = result.response as Array<Record<string, any>>;
@@ -93,13 +95,15 @@ export function FormPicker({ id, errors }: FormPickerProps) {
                 <Check className='size-4 text-white' />
               </div>
             )}
-            <Link
-              href={image.links.html}
-              target='_blank'
-              className='opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate text-white hover:underline p-1 bg-black/50 rounded-b-sm'
-            >
-              {image.user.name}
-            </Link>
+            <div className='md:opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[8px] md:text-[10px] text-white p-1 bg-black/50 rounded-b-sm'>
+              <Link
+                className='underline md:no-underline hover:underline truncate max-w-fit w-full block'
+                target='_blank'
+                href={image.links.html}
+              >
+                {image.user.name}
+              </Link>
+            </div>
           </div>
         ))}
       </div>

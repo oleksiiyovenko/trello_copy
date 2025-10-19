@@ -36,7 +36,12 @@ export function BoardOptions({ id }: BoardOptionsProps) {
           <MoreHorizontal className='size-4' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='px-0 py-3' side='bottom' align='start'>
+      <PopoverContent
+        className=' px-0 py-3'
+        side='bottom'
+        align='end'
+        sideOffset={18}
+      >
         <div className='text-sm font-medium text-center text-neutral-600 pb-4'>
           Board Options
         </div>
