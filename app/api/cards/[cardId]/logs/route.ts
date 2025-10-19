@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 
 import { db } from '@/lib/db';
 import { ENTITY_TYPE } from '@prisma/client';
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { cardId: string } }
 ) {
   try {
