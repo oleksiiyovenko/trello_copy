@@ -5,9 +5,9 @@ import { db } from '@/lib/db';
 
 export async function GET(
   req: Request,
-  { params }: { params: { cardId: string } }
+  { params }: { params: Promise<{ cardId: string }> }
 ) {
-  params = await params;
+  const { cardId } = await params;
   try {
     const { userId, orgId } = await auth();
 
@@ -16,7 +16,7 @@ export async function GET(
     }
 
     const card = await db.card.findUnique({
-      where: { id: params.cardId, list: { board: { orgId } } },
+      where: { id: cardId, list: { board: { orgId } } },
       include: {
         list: {
           select: {
