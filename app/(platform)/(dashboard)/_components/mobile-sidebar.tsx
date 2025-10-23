@@ -33,9 +33,9 @@ export function MobileSidebar() {
     <>
       <Button
         onClick={onOpen}
-        className='block md:hidden mr-2'
+        className='block p-2 md:hidden mr-2'
         variant='ghost'
-        size='sm'
+        size='inline'
       >
         <Menu className='h-4 w-4' />
       </Button>

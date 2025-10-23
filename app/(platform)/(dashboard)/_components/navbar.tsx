@@ -1,18 +1,24 @@
 import { Logo } from '@/components/assets/logo';
-import { Plus } from 'lucide-react';
 
 import { OrganizationSwitcher, UserButton } from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
-import { FormPopover } from '@/components/form/form-popover';
+import { BoardCreateButton } from '@/components/board-create-button';
 
 import { MobileSidebar } from './mobile-sidebar';
 import { cn } from '@/lib/utils';
+import { getAvailableCount } from '@/lib/org-limit';
+import { checkSubscription } from '@/lib/subscription';
+import { auth } from '@clerk/nextjs/server';
 
 interface NavbarProps {
   width_full: boolean;
 }
 
-export function Navbar({ width_full }: NavbarProps) {
+export async function Navbar({ width_full }: NavbarProps) {
+  const { orgId } = await auth();
+
+  const availableCount = await getAvailableCount();
+  const isPro = await checkSubscription(orgId);
+
   return (
     <nav className='sticky z-50 top-0 px-4 w-full h-14 border-b shadow-sm bg-white flex items-center justify-center'>
       <div
@@ -26,21 +32,16 @@ export function Navbar({ width_full }: NavbarProps) {
           <div className='hidden md:flex'>
             <Logo />
           </div>
-          <FormPopover align='start' side='bottom' sideOffset={18}>
-            <Button
-              size={'sm'}
-              variant={'primary'}
-              className='rounded-sm h-auto py-1.5 px-2 cursor-pointer'
-            >
-              <span className='hidden md:inline'>Create</span>
-              <Plus className='h-4 w-4 block md:hidden' />
-            </Button>
-          </FormPopover>
+          <BoardCreateButton
+            variant='navbar'
+            availableCount={availableCount}
+            isPro={isPro}
+          />
         </div>
         <div className='ml-auto flex items-center gap-x-2'>
           <OrganizationSwitcher
-            afterCreateOrganizationUrl={'/organization/:id'}
-            afterSelectOrganizationUrl={'/organization/:id'}
+            afterCreateOrganizationUrl='/organization/:id'
+            afterSelectOrganizationUrl='/organization/:id'
             afterLeaveOrganizationUrl='/select-org'
             hidePersonal
             appearance={{

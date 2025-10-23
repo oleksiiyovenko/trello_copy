@@ -64,7 +64,8 @@ export function FormPicker({ id, errors, width }: FormPickerProps) {
     <div className='relative'>
       <div className='grid grid-cols-3 gap-2 mb-2'>
         {images.map((image) => (
-          <div
+          <button
+            type='button'
             key={image.id}
             className={cn(
               'cursor-pointer relative aspect-video group hover:opacity-75 transition bg-muted '
@@ -95,7 +96,7 @@ export function FormPicker({ id, errors, width }: FormPickerProps) {
                 <Check className='size-4 text-white' />
               </div>
             )}
-            <div className='md:opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[8px] md:text-[10px] text-white p-1 bg-black/50 rounded-b-sm'>
+            <div className='md:hidden group-hover:block md:opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[8px] md:text-[10px] text-white p-1 bg-black/50 rounded-b-sm'>
               <Link
                 className='underline md:no-underline hover:underline truncate max-w-fit w-full block'
                 target='_blank'
@@ -104,7 +105,7 @@ export function FormPicker({ id, errors, width }: FormPickerProps) {
                 {image.user.name}
               </Link>
             </div>
-          </div>
+          </button>
         ))}
       </div>
       <FormErrors id='image' errors={errors} />

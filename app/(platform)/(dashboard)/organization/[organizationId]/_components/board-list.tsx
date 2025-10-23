@@ -9,7 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 import { getAvailableCount } from '@/lib/org-limit';
 import { checkSubscription } from '@/lib/subscription';
-import { BoardCreateButton } from './board-create-button';
+import { BoardCreateButton } from '@/components/board-create-button';
 
 export async function BoardList({
   organizationId,
@@ -56,7 +56,11 @@ export async function BoardList({
                 </p>
               </Link>
             ))}
-            <BoardCreateButton availableCount={availableCount} isPro={isPro} />
+            <BoardCreateButton
+              variant='board-list'
+              availableCount={availableCount}
+              isPro={isPro}
+            />
           </div>
         </>
       ) : (
