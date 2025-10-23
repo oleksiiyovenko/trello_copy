@@ -31,9 +31,9 @@ export function ProModal() {
           <Image src='/hero.svg' alt='Hero' className='object-cover' fill />
         </div>
         <DialogTitle className='text-neutral-700 mx-auto space-y-6 p-6'>
-          <h2 className='font-semibold text-xl'>
+          <div className='font-semibold text-xl'>
             Upgrade to Taskify Pro Today
-          </h2>
+          </div>
           <p className='text-xs font-semibold text-neutral-600'>
             Explore the best of Taskify
           </p>

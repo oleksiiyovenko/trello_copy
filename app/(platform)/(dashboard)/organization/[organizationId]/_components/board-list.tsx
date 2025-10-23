@@ -2,16 +2,14 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { db } from '@/lib/db';
 
-import { FormPopover } from '@/components/form/form-popover';
-import { Hint } from '@/components/hint';
 import Link from 'next/link';
 
-import { HelpCircle, User2 } from 'lucide-react';
+import { User2 } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
-import { MAX_FREE_BOARDS } from '@/constants/boards';
 import { getAvailableCount } from '@/lib/org-limit';
 import { checkSubscription } from '@/lib/subscription';
+import { BoardCreateButton } from './board-create-button';
 
 export async function BoardList({
   organizationId,
@@ -58,27 +56,7 @@ export async function BoardList({
                 </p>
               </Link>
             ))}
-            <FormPopover sideOffset={18} side='bottom'>
-              <div
-                role='button'
-                className='aspect-video relative size-full bg-muted 
-          rounded-sm flex flex-col gap-y-1 items-center justify-center 
-          hover:opacity-75 transition cursor-pointer'
-              >
-                <p className='text-sm'>Create new board</p>
-                <span className='text-xs'>
-                  {isPro
-                    ? 'Unlimited '
-                    : `${MAX_FREE_BOARDS - availableCount} remaining`}
-                </span>
-                <Hint
-                  sideOffset={5}
-                  description='Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace'
-                >
-                  <HelpCircle className='absolute bottom-2 right-2 size-[14px]' />
-                </Hint>
-              </div>
-            </FormPopover>
+            <BoardCreateButton availableCount={availableCount} isPro={isPro} />
           </div>
         </>
       ) : (

@@ -60,6 +60,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
             onBlur={onBlur}
             ref={ref}
             aria-describedby={`${id}-error`}
+            maxLength={64}
           />
         </div>
         <FormErrors id={id} errors={errors} />

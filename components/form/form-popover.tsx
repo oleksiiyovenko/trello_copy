@@ -68,7 +68,7 @@ export function FormPopover({
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent
         align={align}
-        className='w-80 pt-3 mx-6 md:mx-0'
+        className='w-80 pt-3 mx-4 md:mx-0'
         side={width > 1024 ? side : 'top'}
         sideOffset={width > 1024 ? sideOffset : 8}
       >

@@ -108,7 +108,7 @@ export function Description({ data }: DescriptionProps) {
           <div
             role='button'
             onClick={enableEditing}
-            className='min-h-[78px] border-transparent border-[1px] bg-neutral-200 text-sm  py-2 mb-6 md:mb-10 px-3 rounded-md'
+            className='whitespace-pre-line min-h-[78px] border-transparent border-[1px] bg-neutral-200 text-sm  py-2 mb-6 md:mb-10 px-3 rounded-md'
           >
             {data.description || 'Add a more detailed description...'}
           </div>

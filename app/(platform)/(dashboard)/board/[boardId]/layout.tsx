@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs/server';
 import { startCase } from 'lodash';
 import { notFound, redirect } from 'next/navigation';
 import { BoardNavbar } from './_components/board-navbar';
+import { Navbar } from '../../_components/navbar';
 
 export async function generateMetadata({
   params,
@@ -60,15 +61,18 @@ export default async function BoardLayout({
   }
 
   return (
-    <div
-      className='relative h-[calc(100%-var(--spacing)*14)] bg-no-repeat bg-cover bg-center'
-      style={{ backgroundImage: `url(${board.imageFullUrl})` }}
-    >
-      <BoardNavbar data={board} />
-      <div className='absolute inset-0 bg-black/10' />
-      <main className='relative h-[calc(100%-var(--spacing)*14)]'>
-        {children}
-      </main>
+    <div className='h-full'>
+      <Navbar width_full />
+      <div
+        className='relative h-[calc(100%-var(--spacing)*14)] bg-no-repeat bg-cover bg-center'
+        style={{ backgroundImage: `url(${board.imageFullUrl})` }}
+      >
+        <BoardNavbar data={board} />
+        <div className='absolute inset-0 bg-black/10' />
+        <main className='relative h-[calc(100%-var(--spacing)*14)]'>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
