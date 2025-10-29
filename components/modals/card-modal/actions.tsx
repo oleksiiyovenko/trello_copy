@@ -58,8 +58,8 @@ export function Actions({ data }: ActionsProps) {
   }
 
   return (
-    <div className='space-y-2 mt-2'>
-      <p className='text-xs font-semibold'>Actions</p>
+    <div className='space-y-2 mt-2 md:mt-0'>
+      <p className=' font-semibold'>Actions</p>
       <Button
         onClick={onCopy}
         disabled={isLoadingCopy}

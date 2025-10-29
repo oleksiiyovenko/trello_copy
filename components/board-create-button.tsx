@@ -54,12 +54,14 @@ export function BoardCreateButton({
                   ? 'Unlimited '
                   : `${MAX_FREE_BOARDS - availableCount} remaining`}
               </span>
-              <Hint
-                sideOffset={5}
-                description='Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace'
-              >
-                <HelpCircle className='absolute bottom-2 right-2 size-[14px]' />
-              </Hint>
+              {!isPro && (
+                <Hint
+                  sideOffset={5}
+                  description='Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace'
+                >
+                  <HelpCircle className='absolute bottom-2 right-2 size-[14px]' />
+                </Hint>
+              )}
             </button>
           </FormPopover>
         )}

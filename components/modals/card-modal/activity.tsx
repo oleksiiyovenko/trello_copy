@@ -12,7 +12,7 @@ interface ActivityProps {
 export function Activity({ items }: ActivityProps) {
   return (
     <div className='flex items-start gap-x-3 w-full'>
-      <ActivityIcon className='size-5 mt-0.5 text-neutral-700' />
+      <ActivityIcon className='size-5 min-w-5 mt-0.5 text-neutral-700' />
       <div className='w-full'>
         <p className='font-semibold text-neutral-700 mb-2'>Activity</p>
         <ol className='mt-2 space-y-4'>

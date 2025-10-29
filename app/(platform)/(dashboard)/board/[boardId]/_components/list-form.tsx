@@ -88,7 +88,7 @@ export function ListForm() {
           <div className='flex items-center gap-x-1'>
             <FormSubmit>Add list</FormSubmit>
             <Button onClick={disableEditing} size='sm' variant='ghost'>
-              <X className='size-5' />
+              <X className='size-5 min-w-5' />
             </Button>
           </div>
         </form>

@@ -2,12 +2,7 @@ import z from 'zod';
 
 export const UpdateCard = z.object({
   boardId: z.string(),
-  description: z.optional(
-    z
-      .string('Description is required')
-      .nonempty('Description is required')
-      .min(3, { message: 'Description is too short' })
-  ),
+  description: z.string().optional(),
   title: z.optional(
     z
       .string()

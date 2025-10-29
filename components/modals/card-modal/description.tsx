@@ -79,15 +79,16 @@ export function Description({ data }: DescriptionProps) {
 
   return (
     <div className='flex items-start gap-x-3 w-full'>
-      <AlignLeft className='size-5 mt-0.5 text-neutral-700' />
-      <div className='w-full'>
+      <AlignLeft className='size-5 min-w-5 mt-0.5 text-neutral-700' />
+      <div className='w-full min-w-0'>
         <p className='font-semibold text-neutral-700 mb-2'>Description</p>
         {isEditing ? (
-          <form ref={formRef} action={onSubmit} className='space-y-2'>
+          <form ref={formRef} action={onSubmit} className='space-y-2 '>
             <FormTextarea
               ref={textareaRef}
               id='description'
-              className='w-full min-h-[78px] mt-2 text-sm'
+              className='w-full min-h-[78px] mt-2 text-sm 
+                         break-words max-h-25 md:max-h-[40dvh] overflow-y-auto custom-scroll'
               placeholder='Add a more detailed description...'
               errors={fieldErrors}
               defaultValue={data.description || undefined}
@@ -108,7 +109,7 @@ export function Description({ data }: DescriptionProps) {
           <div
             role='button'
             onClick={enableEditing}
-            className='whitespace-pre-line min-h-[78px] border-transparent border-[1px] bg-neutral-200 text-sm  py-2 mb-6 md:mb-10 px-3 rounded-md'
+            className='whitespace-pre-line min-h-[78px] border-transparent border-[1px] bg-neutral-200 text-sm py-2 px-3 rounded-md break-words max-h-25 md:max-h-[40dvh] overflow-y-auto custom-scroll'
           >
             {data.description || 'Add a more detailed description...'}
           </div>

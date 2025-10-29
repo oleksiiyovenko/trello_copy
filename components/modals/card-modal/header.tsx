@@ -70,8 +70,8 @@ export function Header({ data }: HeaderProps) {
   }
 
   return (
-    <div className='flex items-start gap-x-3 mb-6 w-full'>
-      <Layout className='size-5 mt-1 text-neutral-700' />
+    <div className='flex items-start gap-x-3 mb-3 w-full'>
+      <Layout className='size-5 min-w-5 mt-1 text-neutral-700' />
       <div className='w-full'>
         {isEditing ? (
           <form action={onSubmit}>
@@ -102,7 +102,7 @@ export function Header({ data }: HeaderProps) {
 Header.Skeleton = function HeaderSkeleton() {
   return (
     <div className='flex items-start gap-x-3 mb-6'>
-      <Skeleton className='size-5 mt-1 bg-neutral-200' />
+      <Skeleton className='size-5 min-w-5 mt-1 bg-neutral-200' />
       <div>
         <Skeleton className='w-24 h-5 mb-1 bg-neutral-200' />
         <Skeleton className='w-12 h-3 bg-neutral-200' />

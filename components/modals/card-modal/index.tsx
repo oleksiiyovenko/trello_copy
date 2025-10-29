@@ -38,7 +38,7 @@ export function CardModal() {
 
         <div className='grid grid-cols-1 md:grid-cols-4 md:gap-4'>
           <div className='col-span-3'>
-            <div className='w-full space-y-6'>
+            <div className='w-full space-y-3'>
               {!cardData ? (
                 <Description.Skeleton />
               ) : (
