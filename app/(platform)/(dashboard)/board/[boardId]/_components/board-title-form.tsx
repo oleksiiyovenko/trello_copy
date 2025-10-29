@@ -80,7 +80,7 @@ export function BoardTitleForm({ data }: BoardTitleFormPrors) {
     <Button
       onClick={enableEditing}
       variant='transparent'
-      className='font-bold text-lg size-auto min-w-0 overflow-auto max-w-[80%] p-1 px-2'
+      className='font-bold flex justify-start text-lg size-auto min-w-0 overflow-auto max-w-[80%] p-1 px-2'
     >
       {title}
     </Button>
